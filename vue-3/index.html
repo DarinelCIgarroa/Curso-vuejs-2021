@@ -19,6 +19,7 @@
 
 <body>
     <div id="app">
+        
         <p>Darinel Cigarroa De Los Santos</p>
         <button @click="incrementarContador">Incrementar</button>
         <p>{{ contador }}</p>
@@ -45,7 +46,7 @@
         <input type="text" @input="validarInput" v-model="inputValue" id="name">
         {{ inputValue }}
         <p v-if="validarInput">{{ error }}</p>
-        <pre> {{ $data }}</pre>
+        <!-- <pre> {{ $data }}</pre> -->
     </div>
     
     <script src="app.js"></script>
