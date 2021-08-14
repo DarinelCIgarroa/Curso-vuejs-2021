@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LISTA DE TAREAS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <label for="tareas">Tareas</label>
+            <input type="text" id="tarea" v-model="valor">
+            <button id="crearTarea" v-on:click="agregarTarea">Agregar Tarea</button>
+        </div>
+        <ul id="listarTareas">
+            <h1>Lista de tareas:</h1>
+            <li v-for='tarea in tareas'>{{ tarea }}</li>
+        </ul>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

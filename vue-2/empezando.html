@@ -1,0 +1,373 @@
+------------- VFOR CON JSON -------------
+<div id="app">
+  <p v-if="show">Hola</p>
+  <p v-else>Bye</p>
+  <p v-show="show">Holaa!!</p>
+  <ul v-for="user in users">
+    <li>{{ user.name + ' ' + user.lastname + ' ' +'años:' + user.year }}</li>
+  </ul>
+</div>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      users: [
+        { name: 'Darinel', lastname: 'Ciarroa', year: 24 },
+        { name: 'Diana', lastname: 'Rojas', year: 17 }
+      ],
+
+      show: false
+    },
+  });
+</script>
+
+----------- VFOR CON UN OBJETO --------
+<div id="app">
+  <li v-for="(animal, indice, id) in animales">
+    {{ id }}: El {{ indice }} hace {{ animal }}
+  </li>
+
+  <pre>{{ $data }}</pre>
+</div>
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      animales: {
+        perro: 'guaa!',
+        gato: 'miaaaum',
+        pato: 'cuatt'
+      }
+    }
+  });
+</script>
+--------------- trabajar con varios binding ------------
+<div id="app">
+  <input type="text" name="entrada" id="entrada" v-model='options'>
+  <br>
+  <input type="checkbox" name="opcion1" id="opcion1" value="opcion 1" v-model="options">opcion 1
+  <input type="checkbox" name="opcion2" id="opcion2" value="opcion 2" v-model="options">opcion 2
+  <input type="checkbox" name="opcion3" id="opcion3" value="opcion 3" v-model="options">Opcion 3
+
+  <li v-for="option in options">{{ option }}</li>
+
+  <pre>{{ $data }}</pre>
+</div>
+
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      options: [],
+    }
+  });
+</script>
+---------------- doble indice -----
+
+<div id="app">
+  <li v-for="(animal, indice) in animales">
+    El {{ animal }} hace {{ sonidos[indice] }}
+  </li>
+
+  <pre>{{ $data }}</pre>
+</div>
+
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      animales: ['perro', 'gato', 'pajaro'],
+      sonidos: ['wooof', 'miaaum', 'tweet']
+    }
+  });
+</script>
+------------------ Objeto methods ------
+<div id="app">
+  {{ titulo }}
+  <br>
+  {{ mostrarTitulo() }}
+  <pre>{{ $data }}</pre>
+</div>
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      titulo: 'Hola mundo desde data'
+    },
+    methods: {
+      mostrarTitulo() {
+        return 'Hola mundo desde methods'
+      }
+    }
+  });
+</script>
+----------- V-ONCE ----------
+<div id="app">
+  <h2 v-once>{{ titulo }}</h2>
+  <h2>{{ mostrarTitulo() }}</h2>
+  <pre>{{ $data }}</pre>
+</div>
+
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      titulo: 'Hola mundo desde data'
+    },
+    methods: {
+      mostrarTitulo() {
+        this.titulo = 'Hola mundo desde methods'
+        return this.titulo
+      }
+    }
+  });
+</script>
+------ V-HTML ---------------
+<div id="app">
+  <p v-html="enlace">
+  <p>
+  <pre>{{ $data }}</pre>
+</div>
+
+<script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      enlace: '<a href="https://ambientech.org/itinerariosad/convierte-residuos-en-recursos/generacion-residuos-mundo.html">Ir a página</a>'
+    },
+
+  });
+</script>
+
+----- v-show --------
+<div id="app">
+  <div v-show="esMadrugada">
+    <p>Hora del fantasma</p>
+  </div>
+</div>
+
+<script>
+  var vm = new Vue({
+    el: "#app",
+    computed: {
+      esMadrugada() {
+        var fecha = (new Date('29 march 06:50')).getHours() < 7;
+
+        return fecha;
+      }
+    }
+  });
+</script>
+
+---- V-IF ----
+<div id="app">
+  <div v-if="esMadrugada">
+    <p>Hora del fantasma</p>
+  </div>
+  <div v-else>
+    <p>No es hora del fantasma</p>
+  </div>
+</div>
+<script>
+  var vm = new Vue({
+    el: "#app",
+    computed: {
+      esMadrugada() {
+        var fecha = (new Date('29 march 22:50')).getHours() < 7;
+
+        return fecha;
+      }
+    }
+  });
+</script>
+
+---- METHOD ----
+<div id="app">
+  <input type="text" v-model="startCounter" v-on:keyup.enter="startInCounter">
+
+  <button v-on:click="incrementCounter">Incrementa + 1</button>
+
+  <h4>Valor del contador: {{ count }}</h4>
+</div>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      count: 1,
+      startCounter: 1
+    },
+    methods: {
+      incrementCounter() {
+        this.count++;
+      },
+      startInCounter() {
+        this.count = this.startCounter;
+      }
+    }
+  });
+</script>
+
+------ Obtener datos de los eventos -------
+<div id="app" v-on:mousemove="obtenerDatos">
+  <input type="text" placeholder="Pasa el puntito aquí">
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad sapiente assumenda, esse, sed deserunt dolore quis,
+    reprehenderit ullam veritatis at laborum quod ut voluptates autem delectus temporibus, voluptas soluta accusamus?
+  </p>
+  <div class="sigueme"></div>
+  <pre>{{ $data }}</pre>
+</div>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      x: 0,
+      y: 0
+    },
+    methods: {
+      obtenerDatos(event) {
+        document.body.style.cursor = 'none';
+        this.x = event.clientX;
+        this.y = event.clientY;
+        var div = document.querySelector('.sigueme');
+        div.style.left = this.x + 'px';
+        div.style.top = this.y + 'px'
+      }
+    }
+  });
+</script>
+
+--- PASAR VALORES A LOS METODOS ---
+<div id="app" v-on:mousemove="obtenerDatos(200)"></div>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    methods: {
+      obtenerDatos(valor) {
+        var div = document.querySelector('.sigueme');
+        div.style.left = valor + 'px';
+      }
+    }
+  });
+</script>
+------ FILTROS ------
+<div id="app">
+  {{ 'hola mundo' | capitalizar }}
+  <br>
+  {{ 'mi primer filtro' | capitalizar }}
+</div>
+
+<script>
+  Vue.filter('capitalizar', (string) =>{
+    var firstCharacter = string.charAt(0).toUpperCase();
+    var fullText				= string.slice(1, string.length);
+    
+    return firstCharacter + fullText;
+ });
+ 
+ var vm = new Vue({
+   el: '#app',
+ });
+</script>
+--- FILTRO CON ESTANDARES DEL ECMAScript ---
+<div id="app">
+  {{ 'hola darinel' | capitalizar }}
+  <br>
+  {{ 'mi primer mesnaje' | capitalizar}}
+</div>
+
+<script>
+  Vue.filter('capitalizar', function(string){
+    var [firstCharacter, ...restCharacter] = string;
+    
+    return firstCharacter.toUpperCase() + restCharacter.join('');
+  });
+  
+  var vm = new Vue({
+    el: '#app',
+  });
+</script>
+--- TRABAJAR CON MONEDAS ACCOUNTING.JS ---
+<script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.js"></script>
+<div id="app">
+  <table>
+    <thead>
+       <tr>
+         <th>Nombre:</th>
+         <th>Precio:</th>
+       </tr>
+    </thead>
+    <tbody>
+        <tr v-for="item in inventario">
+          <th>{{ item.nombre }}</th>
+          <th>{{ item.precio | money }}</th>
+        </tr>
+    </tbody>
+  </table>
+
+<script>    
+  var vm = new Vue({
+    el: '#app',
+    data:{
+      inventario: [
+        {nombre: 'LG', 			precio:'4500'},
+        {nombre: 'sansumg', precio:'2000.799'},
+        {nombre: 'Huawei', 	precio:'7800'},
+        {nombre: 'Iphone',	precio:'1'},
+      ]
+    }
+  });
+</script>
+
+--- FORMATEO DE FECHAS ---
+<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+<div id="app">
+  Mi fecha de cumpleaños es: {{ date | moment }}
+</div>
+
+<script>
+  Vue.filter('moment', function(date){
+		moment.locale('es');
+		return moment(date).format('lll')
+});
+
+
+var vm = new Vue({
+	el: '#app',
+  data:{
+  	date:'1997-03-29'
+  }
+});
+</script>
+
+--- PROPIEDADES COMPUTADAS ---
+<div id="app">
+  <input type="text" v-model="nombre">
+  <input type="text" id="apellido" value="Rojas">
+  
+  <button @click="cambiarApellido">Cambiar Apellido</button><br>
+  <output>{{ computedFullname }}</output>
+</div>
+
+<script>
+  let apellido = 'Rojas'
+  var vm = new Vue({
+    el: '#app',
+    data:{
+      nombre: 'Diana'
+    },
+    computed:{
+      computedFullname(){
+        return this.nombre + ' ' + apellido
+      }
+    },
+    methods:{
+      cambiarApellido(){
+        apellido = this.$el.querySelector('#apellido').value;
+      }
+    }
+  });
+</script>

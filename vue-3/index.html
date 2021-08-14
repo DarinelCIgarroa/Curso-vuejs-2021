@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUEJS-3</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .rojo{
+            color: red !important;
+        }
+        .azul{
+            color: blue;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>Darinel Cigarroa De Los Santos</p>
+        <button @click="incrementarContador">Incrementar</button>
+        <p>{{ contador }}</p>
+        <hr>
+        <div v-if="esPar(contador)">Es par</div>
+        <div v-else>Es impar</div>
+        <hr>
+        <!-- 
+            <div v-for="numero in numeros">
+                <div v-if="esPar(numero)">
+                    {{ numero }} - Es par
+                </div>
+                <div v-else>
+                    {{ numero }} - Es impar
+                </div>
+            </div> 
+        -->
+        <div v-for="numero in numeros">
+            <div v-bind:class="getClass(numero)" :title="numero">
+                {{ numero }}
+            </div>
+        </div>
+
+        <input type="text" @input="validarInput" v-model="inputValue" id="name">
+        {{ inputValue }}
+        <p v-if="validarInput">{{ error }}</p>
+        <pre> {{ $data }}</pre>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+
+</html>
