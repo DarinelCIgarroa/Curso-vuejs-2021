@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de compras</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+</head>
+<style>
+    #liUtiles li {
+        cursor: pointer;
+    }
+
+    .tachado {
+        text-decoration: line-through;
+    }
+</style>
+
+<body>
+    <div class="container m-4">
+        <div id="listado-compras">
+
+            <h4>Lista de articulos:</h4>
+            <ul id="liUtiles">
+                <p v-if="utiles.length == 0">La lista esta vacia</p>
+                <li v-for="item in listaReversa" @click="marcar(item)" :class="{ tachado : item.comprado}">{{ item.util }}</li>
+            </ul>
+
+            <h6>AGREGAR NUEVO UTIL ESCOLAR</h6>
+            <button class="btn btn-info mb-3 me-2" @click="CambiarEstado(true)">Agregar Utiles</button>
+            <button class="btn btn-warning mb-3" @click="CambiarEstado(false)">Cancelar</button>
+
+            <div v-if="status === true " class="input-group mb-3">
+                <input class="form-control" type="text" placeholder="Agregar nuevo util" v-model="newUtil"
+                    @keyup.enter="addUtil">
+                <input class="btn btn-success" :disabled="newUtil.length === 0" type="submit" value="Agregar"
+                    @click="addUtil">
+            </div>
+            <!-- <pre> {{ $data }}</pre> -->
+        </div>
+
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#listado-compras",
+            data: {
+                status: false,
+                utiles: [
+                    { util: '5 Borradores', comprado: false },
+                    { util: '10 Libretas', comprado: false },
+                    { util: '6 Cuadernos', comprado: false },
+                    { util: '40 Lápices', comprado: false },
+                ],
+                newUtil: ''
+            },
+            computed:{
+                listaReversa(){
+                    return this.utiles.slice().reverse();
+                }
+            },
+            methods: {
+                CambiarEstado(newStatus) {
+                    this.status = newStatus;
+                },
+                addUtil() {
+                    if (this.newUtil != null && this.newUtil.length != 0) {
+                        this.utiles.push({ util: this.newUtil });
+                        this.newUtil = ''
+                    }
+                    return false;
+                },
+                marcar(item) {
+                    /*if(item.comprado == true){
+                        item.comprado = false
+                    }else{
+                        item.comprado = true
+                    }*/
+                    item.comprado = !item.comprado
+                }
+            },
+
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

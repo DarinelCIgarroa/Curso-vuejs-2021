@@ -8,10 +8,10 @@ const NumList = {
     },
     template:
         `
-        <div v-bind:class="getClass(numero)"> 
+        <button v-bind:class="getClass(numero)" :title="numero" @click="pasarNumero(numero)"> 
             {{ numero }}
-        </div>
-    `,
+        </button>        
+        `,
     methods: {
         esPar(numero) {
             return numero % 2 == 0
@@ -22,7 +22,11 @@ const NumList = {
             } else {
                 return 'azul'
             }
+        },
+        pasarNumero(numero){
+            this.$emit('listNum', numero)
         }
+       
     }
 }
 
@@ -32,9 +36,12 @@ const App = {
     },
     template:
         `
-        <div v-for="numero in numeros">
-            <NumList :numero="numero"/>
-        </div>
+        <NumList v-for="numero in numeros" :numero="numero" @list_num="extraerNum(numero)" @listNum="saveNum(numero)"/>
+        <br>
+        <br>
+        <button v-for="numero in listaNumeros">
+            {{ numero }}
+        </button>
         `
     ,
     data() {
@@ -42,7 +49,8 @@ const App = {
             contador: 0,
             numeros: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             inputValue: null,
-            error: ''
+            error: '',
+            listaNumeros: []
         }
     },
 
@@ -59,7 +67,6 @@ const App = {
             }
             return 'azul';
         },
-
         validarInput() {
             let inputName = document.querySelector('#name');
             if (this.inputValue.length < 5) {
@@ -69,7 +76,11 @@ const App = {
                 inputName.style.borderColor = "green"
                 this.error = "¡Excelente!"
             }
+        },
+        saveNum(numero){
+            this.listaNumeros.push(numero);
         }
+       
     },
 
     computed: {
@@ -82,7 +93,5 @@ const App = {
 
     },
 }
-
-
 
 Vue.createApp(App).mount('#app')
