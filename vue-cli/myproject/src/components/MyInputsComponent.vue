@@ -32,12 +32,12 @@ export default {
     },
   },
   methods: {
-    validar() {
-      if (this.rules.required && !this.value) {
+    validar(value) {
+      if (this.rules.required && !value) {
         return "Obligatorio";
       }
       if (this.rules.min && this.value.length < this.rules.min) {
-        return `Minimo ${this.rules.min} caracteres`;
+        return `Debe ingresar minimo ${this.rules.min} caracteres`;
       }
     },
     input($event) {
