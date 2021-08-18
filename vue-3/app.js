@@ -36,7 +36,7 @@ const App = {
     },
     template:
         `
-        <NumList v-for="numero in numeros" :numero="numero" @list_num="extraerNum(numero)" @listNum="saveNum(numero)"/>
+        <NumList v-for="numero in numeros" :numero="numero"  @listNum="saveNum(numero)"/>
         <br>
         <br>
         <button v-for="numero in listaNumeros">
