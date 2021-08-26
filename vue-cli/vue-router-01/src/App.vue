@@ -1,33 +1,37 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/usuarios">Usuarios</router-link> |
-    <router-link to="Contacto">Contacto</router-link> 
+  <div class="container">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <router-link class="nav-link" to="/">Home</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/about">About</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/usuarios/:darinel">Usuarios</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="Contacto">Contacto</router-link>
+      </li>
+       <li class="nav-item">
+        <router-link class="nav-link" to="/login">Login</router-link>
+      </li>
+    </ul>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; 
 
-#nav {
-  padding: 30px;
+a{
+  margin: 5px;
 }
-
 #nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  font-weight: bold !important;
+  color: #2c3e50 !important;
 }
-
 #nav a.router-link-exact-active {
-  color: #d4126d;
-} */
+  color: #d4126d !important;
+} 
 </style>

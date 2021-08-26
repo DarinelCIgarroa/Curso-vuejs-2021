@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="container">
         <h1>Inicia sesión como:</h1>
         <router-link :to="item" v-for="item in usuarios" :key="item">
-            <button class="btn btn-sm btn-success">{{ item }}</button>
+            <button class="btn btn-sm btn-info">{{ item }}</button>
         </router-link>
         <usuario-component></usuario-component>
     </div>
@@ -22,3 +22,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.btn{
+    margin: 5px
+}
+</style>
