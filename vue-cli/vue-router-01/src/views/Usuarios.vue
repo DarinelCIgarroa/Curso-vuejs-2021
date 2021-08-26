@@ -2,7 +2,7 @@
     <div>
         <h1>Inicia sesión como:</h1>
         <router-link :to="item" v-for="item in usuarios" :key="item">
-            <button>{{ item }}</button>
+            <button class="btn btn-sm btn-success">{{ item }}</button>
         </router-link>
         <usuario-component></usuario-component>
     </div>

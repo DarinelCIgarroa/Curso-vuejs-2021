@@ -9,7 +9,8 @@
 </template>
 
 <style>
-#app {
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+/* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,5 +29,5 @@
 
 #nav a.router-link-exact-active {
   color: #d4126d;
-}
+} */
 </style>
