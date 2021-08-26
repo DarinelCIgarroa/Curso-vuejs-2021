@@ -4,6 +4,16 @@
       name="usuario"
       :rules="{ required: true, min: 8 }"
       :value="usuario.value"
+      placeholder = "ingresa tu usuario"
+      type="text"
+      @update="getName"
+    />
+
+    <my-inputs-component
+      name="apellidos"
+      :rules="{ required: true, min:5}"
+      :value="apellidos.value"
+      placeholder = "ingresa tus apellidos"
       type="text"
       @update="getName"
     />
@@ -12,6 +22,7 @@
       name="password"
       :rules="{ required: true, min: 10 }"
       :value="password.value"
+      placeholder="Ingresa tu contraseña"
       type="password"
       @update="getName"
     />
@@ -32,13 +43,17 @@ export default {
   name: "App",
   components: {
     MyButtonComponent,
-    MyInputsComponent,
+    MyInputsComponent
   },
   data() {
     return {
       usuario: {
         value: "",
         valid: false,
+      },
+      apellidos: {
+        value: "",
+        valid: false
       },
       password: {
         value: "",

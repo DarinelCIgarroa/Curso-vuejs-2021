@@ -6,7 +6,7 @@
     </div>
     <input
       :id="name"
-      placeholder="Ingresa tu usuario"
+      :placeholder="placeholder"
       :value="value"
       :type="type"
       @input="input"
@@ -25,6 +25,7 @@ export default {
     rules: Object,
     value: String,
     type: String,
+    placeholder: String
   },
   computed: {
     error() {
@@ -37,7 +38,7 @@ export default {
         return "Obligatorio";
       }
       if (this.rules.min && this.value.length < this.rules.min) {
-        return `Debe ingresar minimo ${this.rules.min} caracteres`;
+        return `Minimo ${this.rules.min} caracteres`;
       }
     },
     input($event) {
