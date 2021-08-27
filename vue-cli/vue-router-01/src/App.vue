@@ -4,8 +4,8 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/">Home</router-link>
       </li>
-      <li class="nav-item">
-        <router-link class="nav-link" to="/about">About</router-link>
+     <li class="nav-item">
+        <router-link class="nav-link" to="/productos">Productos</router-link>
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/usuarios/:darinel">Usuarios</router-link>
@@ -15,6 +15,9 @@
       </li>
        <li class="nav-item">
         <router-link class="nav-link" to="/login">Login</router-link>
+      </li>
+        <li class="nav-item">
+        <router-link class="nav-link" to="/about">About</router-link>
       </li>
     </ul>
   </div>

@@ -6,8 +6,8 @@
                 <form onsubmit="event.preventDefault()" class="box">
                     <h1>Login</h1>
                     <p class="text-muted">Ingresa tus datos:</p> 
-                    <input type="text" name="" placeholder="Username"> 
-                    <input type="password" name="" placeholder="Password"> 
+                    <input type="text" name="" placeholder="Usuario"> 
+                    <input type="password" name="" placeholder="Constraseña"> 
                     <input type="submit" name="" value="Registrate" href="#">
                     <div class="col-md-12">
                         <ul class="social-network social-circle">
