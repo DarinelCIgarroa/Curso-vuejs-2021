@@ -17,7 +17,7 @@
           <p class="card-text">
             {{ item.description }}
           </p>
-          <router-link :to="{name:'Producto', params:{producto: item.titulo} }" class="btn btn-success btn-sm">Ver detalle</router-link>
+          <router-link :to="{name:'Producto', params:{producto: item } }" class="btn btn-success btn-sm">Ver detalle</router-link>
         </div>
       </div>
     </div>

@@ -24,11 +24,9 @@
 
 <script>
 export default {
-  data() {
-    return {
-      producto: this.$route.params.producto,
-    };
-  },
+  props:{
+    producto: Object
+  }
 };
 </script>
 
